@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Keyword Extraction System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Keyword Extraction System</h1>
+
+        <p class="subtitle">
+            Enter text to identify the most important keywords.
+        </p>
+
+        <form method="POST">
+
+            <textarea
+                name="text"
+                placeholder="Enter your text here..."
+                required
+            >{{ text }}</textarea>
+
+            <button type="submit">
+                Extract Keywords
+            </button>
+
+        </form>
+
+        {% if keywords %}
+
+        <div class="result">
+
+            <h2>Extracted Keywords</h2>
+
+            <div class="keyword-list">
+
+                {% for keyword in keywords %}
+
+                <div class="keyword-card">
+
+                    <span class="keyword">
+                        {{ keyword.word }}
+                    </span>
+
+                    <span class="frequency">
+                        {{ keyword.frequency }}
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
